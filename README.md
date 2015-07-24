@@ -20,7 +20,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class User
+  include Mongoid::Document
+  include Mongoid::Sequencer
+
+  sequence :number
+end
+
+user1 = User.new
+user1.number # => 1
+
+user2 = User.new
+user2.number # => 2
+```
+
+or 
+
+```ruby
+class User
+  include Mongoid::Document
+  include Mongoid::Sequencer
+
+ field :number, type: Integer
+end
+
+user1 = User.new
+user1.number = User.next_sequence_value(:number) # => 1
+
+user2 = User.new
+user2.number = User.next_sequence_value(:number) # => 2
+
+user3 = User.new
+user3.number = User.next_sequence_value(:number) # => 3
+```
+
+Resetting the sequence:
+
+```ruby
+User.reset_sequence(:number) # => 0
+```
 
 ## Development
 
@@ -30,7 +69,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mongoid-sequencer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/thalesfp/mongoid-sequencer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
