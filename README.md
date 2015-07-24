@@ -1,6 +1,6 @@
 # Mongoid::Sequencer
 
-Mongoid sequencer add increment behave like a sequence number
+Specifies a sequence number like behavior for Mongoid fields.
 
 ## Installation
 
